@@ -5,7 +5,7 @@ class LandmarksController < ApplicationController
 
   post "/landmarks/new" do
     Landmark.find_or_create_by(params["landmark"])
-    redirect "/landmarks"
+    redirect to "/landmarks"
   end
 
   get '/landmarks' do
@@ -28,6 +28,6 @@ class LandmarksController < ApplicationController
     @landmark.name = params[:landmark][:name]
     @landmark.year_completed = params[:landmark][:year_completed]
     @landmark.save
-    erb :"landmarks/#{@landmark.id}"
+    redirect to :"/landmarks/#{@landmark.id}"
   end
 end

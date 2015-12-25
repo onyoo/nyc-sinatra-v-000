@@ -1,0 +1,7 @@
+<form action="/figures/<%= @figure.id %>" method="POST">
+
+  New name for <%= @figure.name %>: 
+  <input id="name" type="text" name="figure[name]" value="figure[name]">
+  
+  <input type="submit" value="Edit Figure">
+</form>
