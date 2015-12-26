@@ -1,8 +1,12 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Title</th>
+    <th>Landmarks</th>
   </tr>
   <tr>
     <td><%= @figure.name %></td>
+    <td><%= @titles.each{|t| t.name} %></td>
+    <td><%= @landmarks.each{|l| l.name} %></td>
   </tr>
 <table>

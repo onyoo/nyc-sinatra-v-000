@@ -1,7 +1,28 @@
 <form action="/figures/<%= @figure.id %>" method="POST">
 
-  New name for <%= @figure.name %>: 
-  <input id="name" type="text" name="figure[name]" value="figure[name]">
-  
+  New name for <%= @figure.name %>: <br>
+  <input id="name" type="text" name="figure[name]" value="<%=@figure.name%>">
+
+  <br><br>Delete existing titles for <%= @figure.name %>: (select to delete)<br>
+  <% if @figure.titles != [] %>
+    <% @figure.titles.each do |t|%>
+      <input id="set_titles" type="checkbox" name="delete_title[title]" value="<%= t.name %> "><%= t.name %><br>
+    <% end %>
+  <% else %>
+    This poor person has nothing to delete :(
+  <% end %>
+
+  <br><br>New title for <%= @figure.name %>: <br>
+  <input id="title" type="text" name="figure[title]"><br>
+
+  <br><br>Delete existing landmark(s) for <%= @figure.name %>: (select to delete)<br>
+  <% if @figure.landmarks != [] %>
+    <% @figure.landmarks.each do |l|%>
+      <input id="set_landmark" type="checkbox" name="delete_landmark[landmark]" value="<%= l.name %> "><%= l.name %><br>
+    <% end %>
+  <% else %>
+    This poor person has nothing to delete :(
+  <% end %>
+  <br>
   <input type="submit" value="Edit Figure">
 </form>

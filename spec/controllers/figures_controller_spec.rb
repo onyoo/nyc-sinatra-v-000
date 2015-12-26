@@ -4,12 +4,15 @@ describe FiguresController do
   before do
     queenb = Figure.create(:name => "Beyonce")
     bqe = Landmark.create(name: 'BQE', year_completed: 1961)
+    governator = Title.create(name: 'Governator')
+    queenb.titles << governator
     bqe.figure = queenb
     bqe.save
   end
 
   after do
     Figure.destroy_all
+    Title.destroy_all
   end
 
   it "allows you to view form to create a new figure" do
@@ -38,7 +41,7 @@ describe FiguresController do
     get "/figures/#{@figure.id}"
     expect(last_response.status).to eq(200)
     expect(last_response.body).to include("Beyonce")
-    # expect(last_response.body).to include("1961")
+
   end
 
   it "allows you to view form edit a single figure" do
@@ -48,8 +51,8 @@ describe FiguresController do
     expect(last_response.status).to eq(200)
     expect(last_response.body).to include('<form')
     expect(last_response.body).to include('figure[name]')
-    expect(last_response.body).to include(@figure.name)    
-
+    expect(last_response.body).to include(@figure.name) 
+    expect(last_response.body).to include('figure[title]')   
 
   end
 
@@ -57,11 +60,14 @@ describe FiguresController do
   it "allows you to edit a single figure" do
     @figure = Figure.first
     visit "/figures/#{@figure.id}/edit"
-    fill_in :name, with: "BQE!!!!"
+    fill_in :name, with: "Ryhanna"
+    fill_in :title, with: "Mayor"
     click_button "Edit Figure"
     @figure = Figure.first
+    @title = Title.first
     expect(page.current_path).to eq("/figures/#{@figure.id}")
-    expect(page.body).to include(@figure.name)    
+    expect(page.body).to include(@figure.name) 
+    expect(page.body).to include(@title.name)   
 
   end
 end

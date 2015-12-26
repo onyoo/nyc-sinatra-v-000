@@ -1,0 +1,7 @@
+<form action="/titles/<%= @title.id %>" method="POST">
+
+  New name for <%= @title.name %>: 
+  <input id="name" type="text" name="title[name]" value="title[name]">
+  
+  <input type="submit" value="Edit Title">
+</form>

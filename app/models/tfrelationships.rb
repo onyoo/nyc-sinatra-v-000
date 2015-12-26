@@ -1,4 +1,4 @@
-class Tfrelationships < ActiveRecord::Base
-  has_many :titles
-  has_many :figures
+class Tfrelationship < ActiveRecord::Base
+  belongs_to :title
+  belongs_to :figure
 end

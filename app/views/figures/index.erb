@@ -1,3 +1,7 @@
 <% @figure.each do |f| %>
-  <p> <%= f[:name] %></p>
+
+  <p><a href="/figures/<%=f[:id]%>"><%= f[:name] %></a></p>
 <% end %>
+
+<a href='/figures/new'>Create New Figure</a>
+<a href=""></a>
