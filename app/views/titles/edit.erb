@@ -1,7 +1,23 @@
 <form action="/titles/<%= @title.id %>" method="POST">
 
-  New name for <%= @title.name %>: 
-  <input id="name" type="text" name="title[name]" value="title[name]">
-  
+  New name for the <b><%= @title.name %></b> position: <br>
+  <input id="name" type="text" name="title[name]">
+
+  <br><br>Delete existing figures for <%= @title.name %>: (select to delete)<br>
+
+  <% if @title.figures != [] %>
+
+    <% @title.figures.each do |f|%>
+      <input id="set_figures" type="checkbox" name="delete_figures[figure]" value="<%= f.name %> "><%= f.name %><br>
+    <% end %>
+  <% else %>
+    This poor person has nothing to delete :(
+  <% end %>
+
+  <br><br>Add new <%= @title.name %>: <br>
+  <input id="title" type="text" name="title[title]"><br>
+
+  <br>
   <input type="submit" value="Edit Title">
 </form>
+<a href="/titles">cancel</a>

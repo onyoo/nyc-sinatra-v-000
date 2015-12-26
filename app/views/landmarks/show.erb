@@ -1,10 +1,15 @@
 <table>
   <tr>
-    <th>Name</th>
-    <th>Year Completed</th>
+    <th>Name:</th>
+    <th>Year Completed:</th>
+    <th>Built By:</th>
   </tr>
   <tr>
     <td><%= @landmark.name %></td>
     <td><%= @landmark.year_completed %></td>
+    <td><%= @landmark.figure.name %></td>
   </tr>
 <table>
+<br>
+<a href="/landmarks">Back To Landmark Index</a><br>
+<a href="/landmarks/<%=@landmark.id%>/edit">Edit This Landmark</a>

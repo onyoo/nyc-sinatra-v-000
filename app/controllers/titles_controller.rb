@@ -16,6 +16,7 @@ class TitlesController < ApplicationController
 
   get '/titles/:id' do
     @title = Title.find(params[:id])
+    @figure = @title.figures unless @title.figures == []
     erb :"titles/show"
   end
 
@@ -26,7 +27,21 @@ class TitlesController < ApplicationController
 
   post "/titles/:id" do
     @title = Title.find(params[:id])
-    @title.name = params[:title][:name]
+
+    if params[:title][:name] != ""
+      @title.name = params[:title][:name]
+    end
+
+    if params[:delete_figures]
+      title_mark = Figure.find_by(name: params[:delete_figures][:figure].strip)
+      Figure.delete(title_mark.id)
+      @title.figures.delete(title_mark)
+    end
+
+    if params[:title][:title].strip != ""
+      @title.figures << Figure.find_or_create_by(name: params[:title][:title].strip)
+    end
+
     @title.save
     redirect to :"/titles/#{@title.id}"
   end

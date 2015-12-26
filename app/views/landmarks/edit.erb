@@ -1,8 +1,10 @@
 <form action="/landmarks/<%= @landmark.id %>" method="post">
-  Name of new landmark: 
-  <input id="name" type="text" name="landmark[name]" value="landmark[name]">
-  Year completed: 
-  <input id="year_completed" type="text" name="landmark[year_completed]" value="<%= @landmark.year_completed.to_s %>">
+  Edit <%= @landmark.name %>'s name:
+  <input id="name" type="text" name="landmark[name]">
+  Year completed (currently: <%=@landmark.year_completed%>): 
+  <input id="year_completed" type="text" name="landmark[year_completed]">
   
   <input type="submit" value="Edit Landmark">
 </form>
+
+<a href="/landmarks">cancel</a>

@@ -1,3 +1,8 @@
 <% @title.each do |t| %>
-  <p> <%= t[:name] %></p>
+
+  <p><a href="/titles/<%=t.id%>"><%= t[:name] %></a></p>
 <% end %>
+
+<a href='/titles/new'>Create New Title</a><br>
+<a href="/figures">See all figures</a><br>
+<a href="/landmarks">See All Landmarks</a>

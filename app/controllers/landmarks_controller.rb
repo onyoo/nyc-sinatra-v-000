@@ -15,6 +15,7 @@ class LandmarksController < ApplicationController
 
   get '/landmarks/:id' do
     @landmark = Landmark.find(params[:id])
+    @figures = @landmark.figure unless @landmark.figure == []
     erb :"landmarks/show"
   end
 
@@ -25,8 +26,15 @@ class LandmarksController < ApplicationController
 
   post "/landmarks/:id" do
     @landmark = Landmark.find(params[:id])
-    @landmark.name = params[:landmark][:name]
-    @landmark.year_completed = params[:landmark][:year_completed]
+
+    if params[:landmark][:name] != ""
+      @landmark.name = params[:landmark][:name]
+    end
+
+    if params[:landmark][:year_completed] != ""
+      @landmark.year_completed = params[:landmark][:year_completed]
+    end
+
     @landmark.save
     redirect to :"/landmarks/#{@landmark.id}"
   end

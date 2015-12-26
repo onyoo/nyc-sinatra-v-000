@@ -1,12 +1,32 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Title</th>
-    <th>Landmarks</th>
-  </tr>
-  <tr>
+
     <td><%= @figure.name %></td>
-    <td><%= @titles.each{|t| t.name} %></td>
-    <td><%= @landmarks.each{|l| l.name} %></td>
-  </tr>
+
+  
+    <th>Titles</th>
+
+  <% if @titles %>
+    <% @titles.each do |t| %>
+      <td><a href="/titles/<%=t.id%>"><%=t.name%></a></td>
+    <% end %>
+  <% else %>
+    <td>Sorry, no titles.</td>
+  <% end %>
+  
+    <th>Landmarks</th>
+
+  <% if @landmarks %>
+    <% @landmarks.each do |l| %>
+      <td><a href="/landmarks/<%=l.id%>"><%=l.name%></a></td>
+    <% end %>
+  <% else %>
+    <td>Sorry, no landmarks.</td>
+  <% end %>
+
+ </tr>
 <table>
+<br>
+<a href="/figures/<%=@figure.id%>/edit">Edit this profile</a><br>
+<a href="/figures">See all figures</a>

@@ -1,8 +1,21 @@
 <table>
   <tr>
     <th>Name</th>
-  </tr>
-  <tr>
+
     <td><%= @title.name %></td>
-  </tr>
+
+    <th>Figures</th>
+  <% if @figure %>
+    <% @figure.each do |t| %>
+      <td><a href="/figures/<%=t.id%>"><%=t.name%></a></td>
+    <% end %>
+  <% else %>
+    <td>Sorry, no figures.</td>
+  <% end %>
+
+ </tr>
 <table>
+<br>
+<a href="/titles/<%=@title.id%>/edit">Edit this profile</a><br>
+<a href="/titles">See all titles</a>
+<a href="/figures">See all figures</a>

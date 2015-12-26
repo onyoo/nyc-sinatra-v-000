@@ -1,4 +1,8 @@
 <% @landmark.each do |l| %>
-  <p> <%= l[:name] %></p>
-  <p> <%= l[:year_completed] %></p>
+  <p>Name: <a href="/landmarks/<%=l[:id]%>"> <%= l[:name] %></a></p>
+  <p>Year Completed: <%= l[:year_completed] %></p>
 <% end %>
+
+<a href='/landmarks/new'>Create New Landmark</a><br>
+<a href="/titles">See All Titles</a><br>
+<a href="/figures">See All Figures</a>

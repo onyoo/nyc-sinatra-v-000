@@ -1,7 +1,7 @@
 <form action="/figures/<%= @figure.id %>" method="POST">
 
-  New name for <%= @figure.name %>: <br>
-  <input id="name" type="text" name="figure[name]" value="<%=@figure.name%>">
+  Edit <%= @figure.name %>'s name: <br>
+  <input id="name" type="text" name="figure[name]">
 
   <br><br>Delete existing titles for <%= @figure.name %>: (select to delete)<br>
   <% if @figure.titles != [] %>
@@ -15,6 +15,7 @@
   <br><br>New title for <%= @figure.name %>: <br>
   <input id="title" type="text" name="figure[title]"><br>
 
+
   <br><br>Delete existing landmark(s) for <%= @figure.name %>: (select to delete)<br>
   <% if @figure.landmarks != [] %>
     <% @figure.landmarks.each do |l|%>
@@ -23,6 +24,17 @@
   <% else %>
     This poor person has nothing to delete :(
   <% end %>
+
+
+  <br><br>New landmark for <%= @figure.name %>: <br>
+  <% if @landmarks != [] %>
+    <% @landmarks.each do |l| %>
+      <input id="set_landmarks" type="checkbox" name="set_landmark[<%=l.name%>]"><%= l.name %>
+    <% end %>
+  <% else %>
+    There are currently no landmarks to add. Please add a landmark on the landmark page.
+  <% end %>
   <br>
   <input type="submit" value="Edit Figure">
 </form>
+<a href="/figures">cancel</a>
